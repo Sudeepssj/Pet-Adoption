@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Complaints</title>
+    <link rel="stylesheet" href="/static/user/user_complaints.css" />
+  </head>
+
+  <body>
+    <h2>User Complaints</h2>
+
+    <!-- COMPLAINT TABLE -->
+    <table border="1" cellpadding="8" cellspacing="0">
+      <tr>
+        <th>Sl No</th>
+        <th>Date</th>
+        <th>User</th>
+        <th>Complaint</th>
+        <th>Reply</th>
+      </tr>
+
+      {% for c in complaints %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ c.Date }}</td>
+        <td>{{ c.USER.username }}</td>
+        <td>{{ c.Complaint }}</td>
+        <td>{{ c.Reply }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="5">No complaints found</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <!-- ACTION BUTTONS -->
+    <div class="button-container">
+      <a href="/myapp/user_send_complaint_get/" class="btn btn-primary"
+        >➕ Send Complaint</a
+      >
+      <a href="/myapp/user_dashboard_get/" class="btn btn-secondary"
+        >Back to Dashboard</a
+      >
+    </div>
+  </body>
+</html>

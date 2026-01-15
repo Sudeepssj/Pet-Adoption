@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Details</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="/static/shop/pet_details.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <!-- Image -->
+        <img src="{{ pet.photo.url }}" class="pet-img" />
+
+        <!-- Info -->
+        <h2 class="pet-name">{{ pet.name }}</h2>
+
+        <p class="pet-info"><strong>Breed:</strong> {{ pet.breed }}</p>
+        <p class="pet-info"><strong>Age:</strong> {{ pet.age }} years</p>
+        <p class="pet-info"><strong>Category:</strong> {{ pet.category }}</p>
+        <p class="pet-info">
+          <strong>Vaccinated:</strong> {{ pet.vaccinated }}
+        </p>
+
+        <p class="description">{{ pet.description }}</p>
+
+        <div class="btn-group">
+          <a href="/edit_pet_get/{{ pet.id }}/" class="btn edit-btn">Edit</a>
+          <a href="/delete_pet/{{ pet.id }}/" class="btn delete-btn">Delete</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

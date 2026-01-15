@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product</title>
+
+    <link rel="stylesheet" href="/static/shop/add_product.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="title">Add New Product</h1>
+      <p class="subtitle">Fill all fields to add a new product to your shop.</p>
+
+      <form
+        action="/myapp/shop_add_product_post/"
+        method="POST"
+        enctype="multipart/form-data"
+        class="form-box"
+      >
+        {% csrf_token %}
+
+        <!-- Product Name -->
+        <div class="form-group">
+          <label>Product Name</label>
+          <input
+            type="text"
+            name="Product_Name"
+            required
+            placeholder="Enter product name"
+          />
+        </div>
+
+        <!-- Details -->
+        <div class="form-group">
+          <label>Details</label>
+          <textarea
+            name="Details"
+            rows="3"
+            required
+            placeholder="Describe the product"
+          ></textarea>
+        </div>
+
+        <!-- Product Type -->
+        <div class="form-group">
+          <label>Type</label>
+          <select name="type" required>
+            <option value="">Select Type</option>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Other">Other</option>
+            <!--<option value="Fish">Grooming</option>-->
+          </select>
+        </div>
+
+        <!-- Price -->
+        <div class="form-group">
+          <label>Price (₹)</label>
+          <input
+            type="number"
+            name="Price"
+            required
+            placeholder="Enter price"
+          />
+        </div>
+
+        <!-- Quantity -->
+        <div class="form-group">
+          <label>Quantity</label>
+          <input
+            type="number"
+            name="Quantity"
+            required
+            placeholder="Enter stock quantity"
+          />
+        </div>
+
+        <!-- Photo -->
+        <div class="form-group">
+          <label>Product Photo</label>
+          <input type="file" name="Photo" accept="image/*" required />
+        </div>
+
+        <button type="submit" class="btn">Add Product</button>
+      </form>
+    </div>
+  </body>
+</html>

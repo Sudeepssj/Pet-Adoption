@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart</title>
+
+    <link rel="stylesheet" href="/static/user/view_cart.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="page-title">🛒 Your Shopping Cart</h1>
+
+      {% if cart_items %}
+      <div class="table-wrapper">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Price (₹)</th>
+              <th>Total (₹)</th>
+              <th>Order</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for item in cart_items %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ item.PRODUCT.Product_Name }}</td>
+              <td>{{ item.Quantity }}</td>
+              <td>{{ item.PRODUCT.Price }}</td>
+              <td>{{ item.Total_amount }}</td>
+              <td>
+                <a href="/myapp/order_main_get/{{ item.id }}" class="btn-order">
+                  Order
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="summary">
+        <h2>Total Amount: ₹{{ total_amount }}</h2>
+        <a href="/myapp/order_all_get/" class="btn-order-all"> Order All </a>
+      </div>
+
+      {% else %}
+      <p class="empty">Your cart is empty 🛍️</p>
+      {% endif %}
+
+      <div class="back-btn-container">
+        <a href="/myapp/user_dashboard_get/" class="back-btn">
+          ← Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

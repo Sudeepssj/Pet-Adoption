@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pets</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="/static/user/pet.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-title">Available Pets</h1>
+
+      <!-- SEARCH BAR SECTION -->
+      <div class="search-filter-box">
+        <!-- Search Inputs -->
+        <input type="text" placeholder="Search by Name" class="search-input" />
+        <input type="text" placeholder="Search by Breed" class="search-input" />
+        <input type="text" placeholder="Search by Age" class="search-input" />
+
+        <button class="search-btn">Search</button>
+      </div>
+
+      <!-- CATEGORY FILTER BUTTONS -->
+      <div class="category-box">
+        <button class="cat-btn">Dogs</button>
+        <button class="cat-btn">Cats</button>
+        <button class="cat-btn">Birds</button>
+        <button class="cat-btn">Other Pets</button>
+      </div>
+
+      <!-- PET GRID -->
+      <div class="pet-grid">
+        <!-- Example Card -->
+        <div class="pet-card">
+          <img src="{% static 'dog1.jpg' %}" alt="Dog" class="pet-img" />
+          <h3 class="pet-name">Rocky</h3>
+          <p class="pet-info">Breed: Labrador</p>
+          <p class="pet-info">Age: 2 years</p>
+          <p class="pet-info vacc">Vaccinated ✔</p>
+
+          <a href="#" class="btn">View Details</a>
+        </div>
+
+        <!-- Example Card 2 -->
+        <div class="pet-card">
+          <img src="{% static 'cat1.jpg' %}" alt="Cat" class="pet-img" />
+
+          <h3 class="pet-name">Snowy</h3>
+          <p class="pet-info">Breed: Persian</p>
+          <p class="pet-info">Age: 1 year</p>
+          <p class="pet-info vacc">Vaccinated ✔</p>
+
+          <a href="#" class="btn">View Details</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

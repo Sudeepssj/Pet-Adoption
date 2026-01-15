@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Profile</title>
+    <link rel="stylesheet" href="/static/shop/shop_profile.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="profile-card">
+        <!-- SHOP PHOTO -->
+        <div class="photo-box">
+          <img
+            src="{{ shop.shop_photo.url }}"
+            height="200"
+            width="200"
+            alt="Shop Photo"
+          />
+        </div>
+
+        <!-- SHOP INFO -->
+        <div class="info-box">
+          <h2 class="shop-name">{{ shop.shop_name }}</h2>
+          <p class="owner">Owner: <span>{{ shop.owner_name }}</span></p>
+
+          <hr />
+
+          <p><strong>Email:</strong> {{ shop.email }}</p>
+          <p><strong>Phone:</strong> {{ shop.phone_no }}</p>
+
+          <hr />
+
+          <p><strong>Place:</strong> {{ shop.place }}</p>
+          <p><strong>Post:</strong> {{ shop.post }}</p>
+          <p><strong>District:</strong> {{ shop.district }}</p>
+          <p><strong>PIN:</strong> {{ shop.pin }}</p>
+
+          <!-- UPDATE BUTTON -->
+          <a href="/myapp/shop_edit_profile_get/" class="btn-update"
+            >Update Profile</a
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

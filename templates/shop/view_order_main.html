@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Order Status</title>
+
+    <link rel="stylesheet" href="/static/shop/order_status.css" />
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#myinput").on("keyup", function () {
+          var value = $(this).val().toLowerCase();
+          $("#mybody tr").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+          });
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="page-title">🛒 Shop Orders</h1>
+
+      <!-- SEARCH -->
+      <form
+        action="/myapp/shop_order_status_search_post/"
+        method="post"
+        class="search-box"
+      >
+        {% csrf_token %}
+        <input
+          type="text"
+          id="myinput"
+          name="search"
+          placeholder="Search by Order ID / Status / User"
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      <!-- TABLE -->
+      <div class="table-wrapper">
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Order ID</th>
+              <th>User</th>
+              <th>Date</th>
+              <th>Amount (₹)</th>
+              <th>Status</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+
+          <tbody id="mybody">
+            {% for order in orders %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>#{{ order.id }}</td>
+              <td>{{ order.USER.username }}</td>
+              <td>{{ order.Date }}</td>
+              <td>₹{{ order.Amount }}</td>
+
+              <td>
+                <span class="badge ordered">Ordered</span>
+              </td>
+
+              <td>
+                <a
+                  href="/myapp/shop_view_order_sub_status_get/{{ order.id }}"
+                  class="btn-view"
+                >
+                  View
+                </a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="7" class="empty">No orders found</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="back-btn-container">
+        <a href="/myapp/shop_dashboard_get/" class="back-btn">
+          ← Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

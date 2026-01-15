@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Shop Profile</title>
+    <link rel="stylesheet" href="/static/shop/shop_edit_profile.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1 class="title">Edit Shop Profile</h1>
+        <p class="subtitle">Update your shop information below.</p>
+
+        <form
+          method="POST"
+          enctype="multipart/form-data"
+          action="/myapp/shop_edit_profile_post/"
+        >
+          {% csrf_token %}
+
+          <!-- SHOP & OWNER NAME -->
+          <div class="row">
+            <div class="col">
+              <label>Shop Name</label>
+              <input
+                type="text"
+                name="shop_name"
+                value="{{ shop.shop_name }}"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Owner Name</label>
+              <input
+                type="text"
+                name="owner_name"
+                value="{{ shop.owner_name }}"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- CONTACT INFO -->
+          <div class="row">
+            <div class="col">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                value="{{ shop.email }}"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Phone Number</label>
+              <input
+                type="text"
+                name="phone_no"
+                maxlength="10"
+                value="{{ shop.phone_no }}"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- SHOP PHOTO -->
+          <div class="single">
+            <label>Current Shop Photo</label>
+            <img
+              src="{{ shop.shop_photo.url }}"
+              height="200"
+              width="200"
+              class="preview"
+            />
+          </div>
+
+          <div class="single">
+            <label>Change Shop Photo</label>
+            <input type="file" name="shop_photo" accept="image/*" />
+          </div>
+
+          <hr />
+
+          <!-- ADDRESS -->
+          <h2 class="section-heading">Address Details</h2>
+
+          <div class="row">
+            <div class="col">
+              <label>Place</label>
+              <input
+                type="text"
+                name="place"
+                value="{{ shop.place }}"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Post</label>
+              <input
+                type="text"
+                name="post_no"
+                value="{{ shop.post }}"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>District</label>
+              <input
+                type="text"
+                name="district"
+                value="{{ shop.district }}"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>PIN Code</label>
+              <input
+                type="text"
+                name="pin"
+                maxlength="6"
+                value="{{ shop.pin }}"
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="btn">Update Profile</button>
+        </form>
+
+        <a href="" class="back">← Back to Profile</a>
+      </div>
+    </div>
+  </body>
+</html>

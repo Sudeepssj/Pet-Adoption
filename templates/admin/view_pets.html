@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>View Pets</title>
+  <link rel="stylesheet" href="/static/admin/view_pets.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <h1 class="title">
+      🐾 Pets from {{ shop.shop_name }}
+    </h1>
+
+    <p class="subtitle">
+      Location: {{ shop.place }} | Phone: {{ shop.phone_no }}
+    </p>
+
+    <div class="pet-grid">
+      {% for p in pets %}
+      <div class="pet-card">
+
+        <img src="{{ p.photo.url }}" alt="{{ p.name }}">
+
+        <div class="pet-info">
+          <h3>{{ p.name }}</h3>
+
+          <p><strong>Breed:</strong> {{ p.breed }}</p>
+          <p><strong>Category:</strong> {{ p.category }}</p>
+          <p><strong>Age:</strong> {{ p.age }}</p>
+          <p><strong>Vaccinated:</strong> {{ p.vaccinated }}</p>
+
+          <p class="desc">{{ p.description }}</p>
+        </div>
+      </div>
+      {% empty %}
+      <p class="empty">No pets added by this shop.</p>
+      {% endfor %}
+    </div>
+
+    <a href="/myapp/admin_view_shops_get/" class="back-btn">
+      ← Back to Shops
+    </a>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Pet</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/shop/add_pet.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1 class="title">🐾 Add New Pet</h1>
+        <p class="subtitle">Enter pet details for adoption listing</p>
+
+        <form
+          action="/myapp/add_pet_post/"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+
+          <div class="row">
+            <div class="col">
+              <label>Name</label>
+              <input type="text" name="name" placeholder="Rocky" required />
+            </div>
+
+            <div class="col">
+              <label>Breed</label>
+              <input
+                type="text"
+                name="breed"
+                placeholder="Golden Retriever"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Category</label>
+              <input type="text" name="category" placeholder="Dog" required />
+            </div>
+
+            <div class="col">
+              <label>Age</label>
+              <input type="text" name="age" placeholder="2 years" required />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Vaccinated</label>
+              <input
+                type="text"
+                name="vaccinated"
+                placeholder="Yes / No"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Description</label>
+              <input
+                type="text"
+                name="description"
+                placeholder="Friendly and playful"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="single">
+            <label>Pet Photo</label>
+            <input type="file" name="photo" required />
+          </div>
+
+          <button type="submit" class="btn-submit">Add Pet</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

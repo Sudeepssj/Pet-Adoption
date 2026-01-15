@@ -1,0 +1,61 @@
+/* reset */
+* { box-sizing: border-box; margin:0; padding:0; }
+html,body { height:100%; }
+
+body{
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  background: linear-gradient(180deg,#e6f0ff,#f8fbff);
+  display:flex; align-items:center; justify-content:center;
+  padding:32px;
+}
+
+/* wrapper */
+.wrapper{ width:100%; max-width:960px; padding:20px; }
+
+/* card */
+.card{
+  background:#fff; border-radius:14px; padding:28px;
+  box-shadow: 0 14px 40px rgba(18,40,80,0.08);
+}
+
+/* headings */
+.title{ font-size:26px; font-weight:700; color:#122034; text-align:center; margin-bottom:6px; }
+.subtitle{ text-align:center; color:#5b6b7a; margin-bottom:20px; }
+
+/* form layout */
+.form{ width:100%; display:flex; flex-direction:column; gap:12px; }
+
+.row{ display:flex; gap:14px; }
+.col{ flex:1; display:flex; flex-direction:column; }
+.single{ display:flex; flex-direction:column; }
+
+/* labels & inputs */
+label{ font-size:14px; color:#41515f; margin-bottom:6px; font-weight:600; }
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"]{
+  padding:12px 14px; border-radius:8px; border:1px solid #e3e8ee; font-size:15px;
+  background:#fbfdff;
+}
+input:focus{ outline:none; border-color:#6a5acd; box-shadow:0 0 0 4px rgba(106,90,205,0.06); }
+
+/* button */
+.btn{
+  margin-top:8px; padding:14px 16px; border-radius:10px; border:none;
+  background:linear-gradient(90deg,#5a67d8,#6a5acd); color:#fff; font-weight:700; font-size:16px;
+  cursor:pointer;
+  box-shadow: 0 8px 20px rgba(106,90,205,0.18);
+}
+.btn:hover{ transform: translateY(-2px); }
+
+/* login link */
+.login-link{ text-align:center; margin-top:12px; color:#536276; }
+.login-link a{ color:#5a67d8; font-weight:600; text-decoration:none; }
+
+/* responsive: collapse columns on small screens */
+@media (max-width: 780px){
+  .row{ flex-direction:column; }
+  .card{ padding:20px; }
+  .title{ font-size:22px; }
+}

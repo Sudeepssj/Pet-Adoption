@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Pet</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="/static/shop/edit_pet.css/">
+</head>
+<body>
+
+<div class="container">
+    <h2 class="title">Edit Pet</h2>
+
+    <form action="/myapp/edit_pet_post/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <label>Name</label>
+        <input type="text" name="name" value="{{ pet.name }}" required>
+
+        <label>Breed</label>
+        <input type="text" name="breed" value="{{ pet.breed }}" required>
+
+        <label>Age</label>
+        <input type="number" name="age" value="{{ pet.age }}" required>
+
+        <label>Category</label>
+        <select name="category">
+            
+            <option {% if pet.category == "Dog" %}selected{% endif %}>Dog</option>
+            <option {% if pet.category == "Cat" %}selected{% endif %}>Cat</option>
+            <option {% if pet.category == "Bird" %}selected{% endif %}>Bird</option>
+            <option {% if pet.category == "Other" %}selected{% endif %}>Other</option>
+        </select>
+
+        <label>Vaccinated</label>
+        <select name="vaccinated">
+            <option {% if pet.vaccinated == "Yes" %}selected{% endif %}>Yes</option>
+            <option {% if pet.vaccinated == "No" %}selected{% endif %}>No</option>
+        </select>
+
+        <label>Description</label>
+        <textarea name="description">{{ pet.description }}</textarea>
+
+        <label>Current Photo</label><br>
+        <img src="{{ pet.photo.url }}" class="edit-img" height="200" width="200"><br><br>
+
+        <label>Upload New Photo</label>
+        <input type="file" name="photo">
+
+        <button class="submit-btn" type="submit">Save Changes</button>
+    </form>
+</div>
+
+</body>
+</html>

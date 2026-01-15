@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | View Shops</title>
+
+    <link rel="stylesheet" href="/static/admin/view_shops.css" />
+  </head>
+
+  <body>
+    <div class="page-container">
+      <h1 class="page-title">🏪 Registered Shops</h1>
+
+      <div class="shop-grid">
+        {% for shop in shops %}
+        <div class="shop-card">
+          <!-- SHOP HEADER -->
+          <div class="shop-header">
+            <h2>{{ shop.shop_name }}</h2>
+            <span class="shop-location">{{ shop.place }}</span>
+          </div>
+
+          <!-- SHOP DETAILS -->
+          <div class="shop-details">
+            <p><strong>📞 Phone:</strong> {{ shop.phone_no }}</p>
+          </div>
+
+          <!-- STATS -->
+          <div class="shop-stats">
+            <div class="stat">
+              <span class="count">{{ shop.pet_count }}</span>
+              <span class="label">Pets</span>
+            </div>
+
+            <div class="stat">
+              <span class="count">{{ shop.product_count }}</span>
+              <span class="label">Products</span>
+            </div>
+
+            <div class="stat">
+              <span class="count">{{ shop.order_count }}</span>
+              <span class="label">Orders</span>
+            </div>
+          </div>
+
+          <!-- ACTIONS -->
+          <div class="shop-actions">
+            <a href="/myapp/admin_view_pets_get/{{ shop.id }}/" class="btn"
+              >View Pets</a
+            >
+            <a href="/myapp/admin_view_products_get/{{ shop.id }}/" class="btn"
+              >View Products</a
+            >
+            <a
+              href="/myapp/admin_view_orders_get/{{ shop.id }}/"
+              class="btn btn-outline"
+              >View Orders</a
+            >
+          </div>
+        </div>
+        {% empty %}
+        <p class="empty">No shops registered.</p>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="back-dashboard">
+      <center>
+        <p>
+          <a href="/myapp/admin_dashboard_get/">Back to Dashboard</a>
+        </p>
+      </center>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Users</title>
+
+    <link rel="stylesheet" href="/static/admin/view_users.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="title">👤 Registered Users</h1>
+
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Date Joined</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for u in users %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ u.LOGIN.username }}</td>
+            <td>{{ u.full_name }}</td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.phone }}</td>
+            <td>{{ u.address }}</td>
+            <td>{{ u.LOGIN.date_joined|date:"d M Y" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="empty">No users found</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="back-dashboard">
+        <a href="/myapp/admin_dashboard_get/">← Back to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>

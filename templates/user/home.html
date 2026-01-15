@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Adoption – Home</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="/static/user/home.css" />
+  </head>
+
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo">🐾 PetAdopt</div>
+
+      <ul class="nav-links">
+        <li><a href="/myapp/homepage_get/">Home</a></li>
+        <li><a href="/pet/">Pets</a></li>
+        <li><a href="/category/">Categories</a></li>
+
+        <!-- Login Dropdown -->
+        <li class="dropdown">
+          <a href="#" class="dropbtn">Signup ▾</a>
+          <div class="dropdown-content">
+            <a href="/myapp/user_signup_get">User Signup</a>
+            <a href="/myapp/shop_signup_get">Shop Signup</a>
+          </div>
+        </li>
+
+        <li><a href="/myapp/login_get/">Login</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <!-- HERO SECTION -->
+      <section class="hero">
+        <div class="hero-text">
+          <h1>Find Your New Best Friend 🐶</h1>
+          <p>Adopt a pet and bring unconditional love into your home.</p>
+          <a href="/pet/" class="btn-primary">Browse Pets</a>
+        </div>
+
+        <div class="hero-img">
+          <img
+            src="/static/images/dog&cat.jpeg"
+            alt="Dog"
+            height="250"
+            width="250"
+          />
+        </div>
+      </section>
+
+      <!-- LATEST PETS -->
+      <section class="section">
+        <h2 class="section-title">Latest Pets</h2>
+
+        <div class="pet-grid">
+          {% for pet in latest_pets %}
+          <div class="pet-card">
+            <img src="{{ pet.photo.url }}" alt="Pet" />
+            <h3>{{ pet.name }}</h3>
+            <p>{{ pet.breed }} • {{ pet.age }} yrs</p>
+            <a href="/pet/{{ pet.id }}/" class="btn-small">View Details</a>
+          </div>
+          {% empty %}
+          <p>No pets added yet.</p>
+          {% endfor %}
+        </div>
+      </section>
+
+      <!-- BROWSE BY CATEGORY -->
+      <section class="section">
+        <h2 class="section-title">Browse by Category</h2>
+
+        <div class="category-grid">
+          <a href="/category/dogs/" class="cat-card">🐶 Dogs</a>
+          <a href="/category/cats/" class="cat-card">🐱 Cats</a>
+          <a href="/category/birds/" class="cat-card">🐦 Birds</a>
+          <a href="/category/others/" class="cat-card">🐾 Other Pets</a>
+        </div>
+      </section>
+
+      <!-- SHOP LIST -->
+      <section class="section">
+        <h2 class="section-title">Nearby Pet Shops</h2>
+
+        <div class="shop-grid">
+          {% for shop in shops %}
+          <div class="shop-card">
+            <img src="{{ shop.shop_photo.url }}" alt="Shop" />
+            <h3>{{ shop.shop_name }}</h3>
+            <p>{{ shop.place }}, {{ shop.district }}</p>
+            <a href="/shop/{{ shop.id }}/" class="btn-small">View Shop</a>
+          </div>
+          {% empty %}
+          <p>No shops available.</p>
+          {% endfor %}
+        </div>
+      </section>
+
+      <!-- SUCCESS STORIES -->
+      <section class="section">
+        <h2 class="section-title">Adoption Success Stories ❤️</h2>
+
+        <div class="story-grid">
+          {% for story in success_stories %}
+          <div class="story-card">
+            <img src="{{ story.photo.url }}" alt="Story" />
+            <h3>{{ story.pet_name }}</h3>
+            <p>{{ story.story }}</p>
+          </div>
+          {% empty %}
+          <p>No stories yet.</p>
+          {% endfor %}
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section">
+        <h2 class="section-title">What People Say</h2>
+
+        <div class="testimonial-grid">
+          {% for t in testimonials %}
+          <div class="testimonial-card">
+            <p class="quote">“{{ t.message }}”</p>
+            <h4>- {{ t.name }}</h4>
+          </div>
+          {% empty %}
+          <p>No testimonials yet.</p>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-icons">
+        <a href="#"
+          ><img src="/static/icons/facebook.png" width="32" height="32" alt=""
+        /></a>
+        <a href="#"
+          ><img src="/static/icons/instagram.png" width="32" height="32" alt=""
+        /></a>
+        <a href="#"
+          ><img src="/static/icons/twitter.png" width="32" height="32" alt=""
+        /></a>
+        <a href="#"
+          ><img src="/static/icons/youtube.png" width="32" height="32" alt=""
+        /></a>
+      </div>
+
+      <p>© 2025 PetAdopt. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

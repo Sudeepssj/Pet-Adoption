@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Pets</title>
+
+    <link rel="stylesheet" href="/static/shop/view_pets.css" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Real-time search as user types
+        $("#petSearch").on("keyup", function () {
+          let searchTerm = $(this).val().toLowerCase().trim();
+          let tableRows = $(".pet-table tbody tr");
+          let visibleCount = 0;
+
+          tableRows.each(function () {
+            let rowText = $(this).text().toLowerCase();
+            if (rowText.includes(searchTerm) || searchTerm === "") {
+              $(this).show();
+              visibleCount++;
+            } else {
+              $(this).hide();
+            }
+          });
+
+          // Show "No pets found" if nothing matches
+          if (visibleCount === 0 && searchTerm !== "") {
+            $(".pet-table tbody").append(
+              '<tr class="no-results"><td colspan="8" class="empty">No pets match your search</td></tr>'
+            );
+          } else {
+            $(".pet-table tbody .no-results").remove();
+          }
+        });
+
+        // Search button click
+        $("#searchBtn").on("click", function () {
+          $("#petSearch").trigger("keyup");
+        });
+
+        // Reset search on clear
+        $("#petSearch").on("input", function () {
+          if ($(this).val() === "") {
+            $(".pet-table tbody tr").show();
+            $(".pet-table tbody .no-results").remove();
+          }
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="page">
+      <h1 class="title">🐾 Your Pets</h1>
+
+      <!-- SEARCH BOX -->
+      <div class="search-box">
+        <input
+          type="text"
+          id="petSearch"
+          placeholder="Search by Pet Name, Breed, or Category..."
+        />
+        <button type="button" id="searchBtn">Search</button>
+      </div>
+
+      <div class="table-box">
+        <table class="pet-table">
+          <thead>
+            <tr>
+              <th>Pet Name</th>
+              <th>Breed</th>
+              <th>Age</th>
+              <th>Category</th>
+              <th>Vaccinated</th>
+              <th>Description</th>
+              <th>Photo</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for pet in pets %}
+            <tr>
+              <td>{{ pet.name }}</td>
+              <td>{{ pet.breed }}</td>
+              <td>{{ pet.age }}</td>
+              <td>{{ pet.category }}</td>
+
+              <td>
+                {% if pet.vaccinated == "Yes" %}
+                <span class="badge yes">Yes</span>
+                {% else %}
+                <span class="badge no">No</span>
+                {% endif %}
+              </td>
+
+              <td class="desc">{{ pet.description }}</td>
+
+              <td>
+                <img src="{{ pet.photo.url }}" class="pet-img" alt="pet" />
+              </td>
+
+              <td class="actions">
+                <a href="/myapp/edit_pet_get/{{ pet.id }}" class="btn edit"
+                  >Edit</a
+                >
+                <a
+                  href="/myapp/pet_delete_get/{{ pet.id }}/"
+                  class="btn delete"
+                  onclick="return confirm('Are you sure?')"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="8" class="empty">No pets added yet</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="back-btn-container">
+        <a href="/myapp/shop_dashboard_get/" class="back-btn">
+          ← Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

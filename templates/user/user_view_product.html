@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Products</title>
+
+    <link rel="stylesheet" href="/static/user/view_products.css" />
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Real-time search as user types
+        $("#productSearch").on("keyup", function () {
+          let searchTerm = $(this).val().toLowerCase().trim();
+          let tableRows = $(".product-table tbody tr");
+          let visibleCount = 0;
+
+          tableRows.each(function () {
+            let rowText = $(this).text().toLowerCase();
+            if (rowText.includes(searchTerm) || searchTerm === "") {
+              $(this).show();
+              visibleCount++;
+            } else {
+              $(this).hide();
+            }
+          });
+
+          // Show "No products found" if nothing matches
+          if (visibleCount === 0 && searchTerm !== "") {
+            $(".product-table tbody").append(
+              '<tr class="no-results"><td colspan="8" class="empty">No products match your search</td></tr>'
+            );
+          } else {
+            $(".product-table tbody .no-results").remove();
+          }
+        });
+
+        // Search button click
+        $("#searchBtn").on("click", function () {
+          $("#productSearch").trigger("keyup");
+        });
+
+        // Reset search on clear
+        $("#productSearch").on("input", function () {
+          if ($(this).val() === "") {
+            $(".product-table tbody tr").show();
+            $(".product-table tbody .no-results").remove();
+          }
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="title">Your Products</h1>
+
+      <!-- SEARCH BOX -->
+      <div class="search-box">
+        <input
+          type="text"
+          id="productSearch"
+          placeholder="Search by Product Name, Type, or Price..."
+        />
+        <button type="button" id="searchBtn">Search</button>
+      </div>
+
+      {% if products %}
+      <table class="product-table" border="1" style="border-collapse: collapse">
+        <thead>
+          <tr>
+            <th>sl no</th>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Price (₹)</th>
+            <th>Qty</th>
+            <th>Details</th>
+            <th>Cart</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for p in products %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+
+            <td>
+              <img
+                src="{{ p.Photo.url }}"
+                height="150"
+                width="150"
+                class="thumb"
+              />
+            </td>
+
+            <td>{{ p.Product_Name }}</td>
+
+            <td>{{ p.type }}</td>
+
+            <td>{{ p.Price }}</td>
+
+            <td>{{ p.Quantity }}</td>
+
+            <td>{{ p.Details }}</td>
+            <td>
+              <a
+                href="/myapp/product_quantity_get/{{ p.id }}"
+                class="btn add-to-cart"
+                >Add to Cart</a
+              >
+            </td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+
+      {% else %}
+      <p class="no-products">No products added yet.</p>
+      {% endif %}
+
+      <div class="back-btn-container">
+        <a href="/myapp/user_dashboard_get/" class="back-btn">
+          ← Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

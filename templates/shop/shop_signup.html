@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop Registration</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/shop/shop_signup.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="signup-card">
+        <h1 class="title">Register Your Shop</h1>
+        <p class="subtitle">Create a vendor account to add and manage pets.</p>
+
+        <form
+          action="/myapp/shop_signup_post/"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %}
+
+          <!-- Shop Information -->
+          <h2 class="section-heading">Shop Information</h2>
+
+          <div class="row">
+            <div class="col">
+              <label>Shop Name</label>
+              <input
+                type="text"
+                name="shop_name"
+                placeholder="Happy Pet Store"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Owner Name</label>
+              <input
+                type="text"
+                name="owner_name"
+                placeholder="Owner Full Name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="shop@example.com"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Phone Number</label>
+              <input
+                type="text"
+                name="phone_no"
+                placeholder="9876543210"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="single">
+            <label>Shop Photo</label>
+            <input type="file" name="shop_photo" accept="image/*" required />
+          </div>
+
+          <hr class="divider" />
+
+          <!-- Address Details -->
+          <h2 class="section-heading">Address Details</h2>
+
+          <div class="row">
+            <div class="col">
+              <label>Place</label>
+              <input
+                type="text"
+                name="place"
+                placeholder="Locality / Area"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Post Office</label>
+              <input
+                type="text"
+                name="post_no"
+                placeholder="Post Office Name"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label>District</label>
+              <input
+                type="text"
+                name="district"
+                placeholder="District Name"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>PIN Code</label>
+              <input
+                type="text"
+                name="pin"
+                placeholder="6-digit PIN"
+                required
+              />
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <!-- Login Credentials -->
+          <h2 class="section-heading">Account Login</h2>
+
+          <div class="row">
+            <div class="col">
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                placeholder="Choose a username"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                minlength="8"
+                placeholder="At least 8 characters"
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit">Register Shop</button>
+        </form>
+
+        <p class="login-link">
+          Already registered? <a href="/myapp/login_get/">Login here</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

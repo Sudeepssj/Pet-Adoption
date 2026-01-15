@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Admin Dashboard</title>
+
+    <link rel="stylesheet" href="/static/admin/admin_dashboard.css" />
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h2 class="logo">🐾 PetAdmin</h2>
+
+      <ul class="menu">
+        <li><a class="active" href="#">Dashboard</a></li>
+        <li><a href="/myapp/admin_view_shops_get/">View Shops</a></li>
+        <li><a href="/myapp/admin_view_users_get/">View Users</a></li>
+        <li><a href="/myapp/admin_view_complaints_get/">User Complaints</a></li>
+
+        <li><a href="/logout/">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <h1>Dashboard Overview</h1>
+        <p>Welcome, Super Admin</p>
+      </header>
+
+      <!-- STAT CARDS -->
+      <section class="stats">
+        <div class="stat-card sea">
+          <h2>{{ total_shops }}</h2>
+          <p>Total Shops</p>
+        </div>
+
+        <div class="stat-card sky">
+          <h2>{{ total_users }}</h2>
+          <p>Total Users</p>
+        </div>
+
+        <div class="stat-card sky">
+          <h2>{{ pending_complaints }}</h2>
+          <p>Pending Complaints</p>
+        </div>
+      </section>
+
+      <!-- QUICK ACTIONS -->
+      <section class="actions">
+        <h2 class="section-title">Quick Actions</h2>
+
+        <div class="action-grid">
+          <a href="/myapp/admin_view_shops_get/" class="action-card"
+            >👤 View Shops</a
+          >
+          <a href="/myapp/admin_view_users_get/" class="action-card"
+            >🏪 View Users</a
+          >
+
+          <a href="/myapp/admin_view_complaints_get/" class="action-card"
+            >📁 Complaints</a
+          >
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Shop Products</title>
+    <link rel="stylesheet" href="{% static 'admin/view_products.css' %}" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="title">🛍 Products from {{ shop.shop_name }}</h1>
+
+      <p class="subtitle">
+        Location: {{ shop.place }} | Phone: {{ shop.phone_no }}
+      </p>
+
+      <div class="product-grid">
+        {% for p in products %}
+        <div class="product-card">
+          <img src="{{ p.Photo.url }}" alt="{{ p.Product_Name }}" />
+
+          <div class="product-info">
+            <h3>{{ p.Product_Name }}</h3>
+
+            <p><strong>Type:</strong> {{ p.type }}</p>
+            <p><strong>Price:</strong> ₹{{ p.Price }}</p>
+            <p><strong>Quantity:</strong> {{ p.Quantity }}</p>
+
+            <p class="desc">{{ p.Details }}</p>
+          </div>
+        </div>
+        {% empty %}
+        <p class="empty">No products added by this shop.</p>
+        {% endfor %}
+      </div>
+
+      <a href="/myapp/admin_view_shops_get/" class="back-btn">
+        ← Back to Shops
+      </a>
+    </div>
+  </body>
+</html>

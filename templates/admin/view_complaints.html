@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>View User Complaints</title>
+    <link rel="stylesheet" href="/static/admin/view_complaints.css" />
+  </head>
+
+  <body>
+    <h2>All User Complaints</h2>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+      <tr>
+        <th>Sl No</th>
+        <th>Date</th>
+        <th>User</th>
+        <th>Complaint</th>
+        <th>Reply</th>
+      </tr>
+
+      {% for c in complaints %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ c.Date }}</td>
+        <td>{{ c.USER.username }}</td>
+        <td>{{ c.Complaint }}</td>
+        {% if c.Reply == "no reply" %}
+        <td>
+          <a href="/myapp/admin_reply_get/{{ c.id }}/">Reply</a>
+        </td>
+        {% else %}
+
+        <td>{{ c.Reply }}</td>
+        {% endif %}
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">No complaints found</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <div class="back-btn-container">
+      <a href="/myapp/admin_dashboard_get/" class="back-btn">Back to Dashboard</a>
+    </div>
+
+  </body>
+</html>

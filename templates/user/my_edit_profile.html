@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile</title>
+
+    <link rel="stylesheet" href="/static/user/user_edit_profile.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1 class="title">Edit Profile</h1>
+        <p class="subtitle">Update your personal information below.</p>
+
+        <form
+          method="POST"
+          enctype="multipart/form-data"
+          action="/myapp/my_edit_profile_post/"
+        >
+          {% csrf_token %}
+
+          <!-- NAME + EMAIL -->
+          <div class="row">
+            <div class="col">
+              <label>Full Name</label>
+              <input
+                type="text"
+                name="full_name"
+                value="{{ user_data.full_name }}"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                value="{{ user_data.email }}"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- PHONE + ADDRESS -->
+          <div class="row">
+            <div class="col">
+              <label>Phone</label>
+              <input
+                type="text"
+                name="phone"
+                value="{{ user_data.phone }}"
+                required
+              />
+            </div>
+
+            <div class="col">
+              <label>Address</label>
+              <input
+                type="text"
+                name="address"
+                value="{{ user_data.address }}"
+              />
+            </div>
+          </div>
+
+          <!-- CURRENT PHOTO -->
+          <div class="single">
+            <label>Current Profile Photo</label>
+            <img
+              src="{{ user_data.profile_photo.url }}"
+              height="200"
+              width="200"
+              class="preview"
+            />
+          </div>
+
+          <!-- NEW PHOTO -->
+          <div class="single">
+            <label>Update Profile Photo</label>
+            <input type="file" name="profile_photo" accept="image/*" />
+          </div>
+
+          <button type="submit" class="btn">Save Changes</button>
+        </form>
+
+        <center><a href="/myapp/my_profile_get/" class="back">← Back to Profile</a></center>
+      </div>
+    </div>
+  </body>
+</html>

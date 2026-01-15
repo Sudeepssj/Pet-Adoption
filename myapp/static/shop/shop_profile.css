@@ -1,0 +1,118 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* PAGE BACKGROUND */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0f2fe, #ede9fe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* PROFILE CARD */
+.profile-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+  flex-wrap: wrap;
+}
+
+/* PHOTO SECTION */
+.photo-box {
+  flex: 1;
+  text-align: center;
+}
+
+.photo-box img {
+  width: 200px;
+  height: 200px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 3px solid #e5e7eb;
+}
+
+/* INFO SECTION */
+.info-box {
+  flex: 2;
+}
+
+.shop-name {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.owner {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.owner span {
+  font-weight: 600;
+}
+
+/* DIVIDERS */
+hr {
+  border: none;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 15px 0;
+}
+
+/* TEXT */
+.info-box p {
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* UPDATE BUTTON */
+.btn-update {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 26px;
+  background: #5a00ff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.btn-update:hover {
+  background: #4b00e6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .photo-box img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .shop-name {
+    font-size: 24px;
+  }
+}

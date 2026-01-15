@@ -1,0 +1,51 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reply Complaint</title>
+  </head>
+
+  <body>
+    <h2>Reply to Complaint</h2>
+
+    <p><strong>User:</strong> {{ complaint.USER.username }}</p>
+    <p><strong>Date:</strong> {{ complaint.Date }}</p>
+    <p><strong>Complaint:</strong></p>
+    <p>{{ complaint.Complaint }}</p>
+
+    <hr />
+
+    <form method="post" action="/myapp/admin_reply_post/">
+      {% csrf_token %}
+
+      <input type="hidden" name="complaint_id" value="{{ complaint.id }}" />
+
+      <label>Reply</label><br />
+      <textarea name="reply" rows="5" cols="50" required></textarea><br /><br />
+
+      <button type="submit">Submit Reply</button>
+    </form>
+
+    <br />
+    <a href="/myapp/admin_view_complaints_get/">← Back</a>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Reply Complaint</title>
+    <link rel="stylesheet" href="/static/admin/reply_complaint.css">
+</head>
+<body>
+    <form action="/myapp/admin_reply_post/" method="post">
+        {% csrf_token %}
+       
+        <label for="reply">Reply:</label><br>
+        <textarea id="reply" name="reply" rows="4" cols="50" required></textarea><br><br>
+        <button type="submit">Submit Reply</button>
+</body>
+</html>

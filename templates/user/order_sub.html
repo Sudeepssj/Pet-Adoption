@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Details</title>
+
+    <link rel="stylesheet" href="/static/user/order_details.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="page-title">🧾 Order Details</h1>
+
+      <div class="table-wrapper">
+        <table class="details-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price (₹)</th>
+              <th>Total (₹)</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for detail in order_items %}
+            <tr>
+              <td>{{ forloop.counter }}</td>
+              <td>{{ detail.PRODUCT.Product_Name }}</td>
+              <td>{{ detail.Quantity }}</td>
+              <td>₹{{ detail.PRODUCT.Price }}</td>
+              <td>₹{{ detail.ORDER.Amount }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="5" class="empty">No order details found</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="back-box">
+        <a href="/myapp/order_main_status_get/" class="btn-back">
+          ← Back to Orders
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

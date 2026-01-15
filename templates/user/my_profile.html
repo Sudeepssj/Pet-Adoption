@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+
+    <link rel="stylesheet" href="/static/user/user_profile.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="profile-card">
+        <!-- USER PHOTO -->
+        <div class="photo-box">
+          <img
+            src="{{ user_data.profile_photo.url }}"
+            height="200"
+            width="200"
+            alt="Profile Photo"
+          />
+        </div>
+
+        <!-- USER INFORMATION -->
+        <div class="info-box">
+          <h2 class="name">{{ user_data.full_name }}</h2>
+
+          <hr />
+
+          <p><strong>Email:</strong> {{ user_data.email }}</p>
+          <p><strong>Phone:</strong> {{ user_data.phone }}</p>
+
+          <hr />
+
+          <p><strong>Address:</strong> {{ user_data.address }}</p>
+
+          <!-- UPDATE BUTTON -->
+          <a href="/myapp/my_edit_profile_get/" class="btn-update">
+            Update Profile
+          </a>
+        </div>
+      </div>
+
+      <div class="back-btn-container">
+        <a href="/myapp/user_dashboard_get/" class="back-btn">
+          ← Back to Dashboard
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

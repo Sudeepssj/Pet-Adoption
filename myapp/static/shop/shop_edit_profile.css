@@ -1,0 +1,149 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* PAGE BACKGROUND */
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #dbeafe, #ede9fe);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* CARD */
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+}
+
+/* TITLE */
+.title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* FORM STRUCTURE */
+.row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 18px;
+}
+
+.col {
+  flex: 1;
+}
+
+.single {
+  margin-bottom: 18px;
+}
+
+/* LABELS */
+label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+/* INPUTS */
+input[type="text"],
+input[type="email"],
+input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #5a00ff;
+}
+
+/* IMAGE PREVIEW */
+.preview {
+  display: block;
+  margin-top: 8px;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 2px solid #e5e7eb;
+}
+
+/* SECTION HEADING */
+.section-heading {
+  margin: 25px 0 15px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* DIVIDER */
+hr {
+  border: none;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 25px 0;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 25px;
+  width: 100%;
+  padding: 14px;
+  background: #5a00ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #4b00e6;
+}
+
+/* BACK LINK */
+.back {
+  display: inline-block;
+  margin-top: 18px;
+  text-decoration: none;
+  color: #5a00ff;
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .card {
+    padding: 25px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+}
