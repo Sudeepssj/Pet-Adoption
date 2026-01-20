@@ -179,5 +179,9 @@ urlpatterns = [
     # super user Admin dashboard view user get method url
     path('admin_view_users_get/', views.admin_view_users_get),
 
+    # logout 
+    path('logout/', views.logout_get,name='logout'),
+    
+
 
 ]

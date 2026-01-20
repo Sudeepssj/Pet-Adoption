@@ -3,9 +3,11 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User,Group
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from myapp.models import *
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 # admin dashboard get method
@@ -710,6 +712,17 @@ def admin_view_orders_get(request, shop_id):
 def admin_view_users_get(request):
     users = User_signup_table.objects.all()
     return render(request, "admin/view_users.html", {"users": users})
+
+
+# logout
+def logout_get(request):
+    logout(request)
+    return redirect('/myapp/login_get')
+
+@login_required(login_url='/myapp/login_get/')
+def user_dashboard_get(request):
+    return render(request,"user/dashboard.html")
+
 
 
 
